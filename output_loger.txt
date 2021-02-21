@@ -1,0 +1,4 @@
+Вызвана функция find_10_most_common_words
+В 2021-02-21 16:05:49.647896
+С аргументами ('C:\\Users\\Gena\\Desktop\\Netology_HW\\Py_Prof\\HW_3_Decorators\\HW_1\\newsafr.xml',), {}
+Возвращено ('туристов', 40)
