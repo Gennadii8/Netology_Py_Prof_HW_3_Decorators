@@ -7,12 +7,13 @@ import datetime
 def write_logs_with_path(path):
     def write_logs(old_function):
         def new_function(*args, **kwargs):
+            result = old_function(*args, **kwargs)
             with open(path, 'w', encoding="utf-8") as f:
                 f.write(f'Вызвана функция {old_function.__name__}\n')
                 f.write(f'В {datetime.datetime.now()}\n')
                 f.write(f'С аргументами {args}, {kwargs}\n')
                 f.write(f'Возвращено {old_function(*args, **kwargs)}\n')
-
+            return result # если не возвращать результат старой функции, то она сама по себе будет выдавать None
         return new_function
     return write_logs
 
@@ -66,7 +67,7 @@ def find_10_most_common_words(file, word_lenght=6, top_lenght=10):
         nonlocal list_top_of_frequency
         list_top_of_frequency = list(dict_frequency_of_occurrences.items())
         list_top_of_frequency.sort(key=lambda i: -i[1])
-        print(list_top_of_frequency)
+        # print(list_top_of_frequency)
         # for i in list_top_of_frequency[0:top_lenght]:
         #     print(f'{i[0]}:{i[1]}')
 
@@ -82,5 +83,7 @@ if __name__ == '__main__':
     file_path_1 = os.path.join(os.getcwd(), 'newsafr.xml')
     file_path_2 = os.path.join(os.getcwd(), 'newsafr.json')
     find_10_most_common_words(file_path_1)
+    x = find_10_most_common_words(file_path_1)
+    print(x)
 
 
